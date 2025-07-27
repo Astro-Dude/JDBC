@@ -83,7 +83,7 @@ public class JDBC {
                             updateEventName(conn, id, name);
                         }
                         case 4 -> {
-                            System.out.println("👋 Exiting...");
+                            System.out.println("Exiting...");
                             return;
                         }
                         default -> System.out.println("Invalid option");
@@ -137,14 +137,14 @@ public class JDBC {
             ps.setDate(4, Date.valueOf(end));
             ps.setString(5, desc);
             ps.executeUpdate();
-            System.out.println("✅ Event inserted.");
+            System.out.println("Event inserted.");
         }
     }
 
     private static void selectEvents(Connection conn) throws SQLException {
         String query = "SELECT * FROM event";
         try (Statement q = conn.createStatement(); ResultSet rs = q.executeQuery(query)) {
-            System.out.println("\n📅 Events:");
+            System.out.println("\nEvents:");
             while (rs.next()) {
                 System.out.printf("ID: %d | Name: %s | Start: %s | End: %s | Desc: %s\n",
                         rs.getInt("event_id"), rs.getString("name"),
@@ -160,9 +160,9 @@ public class JDBC {
             pq.setString(1, newName);
             pq.setInt(2, eventId);
             int affected = pq.executeUpdate();
-            System.out.println("🔁 Event updated: " + affected + " row(s) affected.");
+            System.out.println("Event updated: " + affected + " row(s) affected.");
         } catch (SQLException e) {
-            System.out.println("⚠️ Failed to update event: " + e.getMessage());
+            System.out.println("Failed to update event: " + e.getMessage());
         }
     }
 }
